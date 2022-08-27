@@ -24,26 +24,26 @@ class Solution {
     }
 
     public int romanToInt(String s) {
-        int l = s.length();
+        int wordLength = s.length();
         // current position
-        int c = 0;
+        int currentPosition = 0;
         int result = 0;
 
         // until reach the end of the roman
-        while (c < l) {
+        while (currentPosition < wordLength) {
             // if last index then exactly one character else the next numeral can be two-character
-            String curr = c + 2 <= l ? s.substring(c, c + 2) : "0";
+            String curr = currentPosition + 2 <= wordLength ? s.substring(currentPosition, currentPosition + 2) : "0";
             // check that next two-character numeral can be found in map
             if (a.containsKey(curr)) {
                 // if so value added to the result
                 result += a.get(curr);
                 // and move position by 2
-                c += 2;
+                currentPosition += 2;
             } else {
                 // else numeral is one-digit and value is added to the result
-                result += a.get(String.valueOf(s.charAt(c)));
+                result += a.get(String.valueOf(s.charAt(currentPosition)));
                 // and move position by 1
-                c++;
+                currentPosition++;
             }
         }
         return result;
